@@ -231,7 +231,7 @@ const deletepost =(postId)=>{
 
                                 
                                 
-                                <div className="card-action" >
+                                <div className="card-action" style={{overflow:"auto"}}>
                                     <a key={item._id} href={item.link} target="_blank" style={{color:"skyblue"}}>{item.link}</a>
                                 </div>
 
