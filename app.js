@@ -26,14 +26,12 @@ Mongoose.connection.on('error',(err)=>{
 
 require('./model/user')
 require('./model/post')
-require('./model/message')
 
 
 app.use(bodyParser.json())
 app.use(require('./Router/auth'))
 app.use(require('./Router/post'))
 app.use(require('./Router/user'))
-app.set(require('./Router/chat'))
 app.use(Cors())
 
 

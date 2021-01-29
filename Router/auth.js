@@ -9,13 +9,13 @@ const { json } = require('body-parser')
 const nodemailer = require('nodemailer')
 const sendgridTransport  = require('nodemailer-sendgrid-transport')
 const crypto = require('crypto')
-
+const {SENDGRID_API , EMAIL} = require('../config/key')
 
 
 const transport = nodemailer.createTransport(
     sendgridTransport({
         auth:{
-            api_key:"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"
+            api_key:SENDGRID_API
         }
     })
 )
@@ -133,7 +133,7 @@ router.post('/resetpassword',(req,res)=>{
                     <h1>Stay Connected Community </h1>
                     <h2>Password Reset</h2>
                     <p> you requested for password Reset !...</p>
-                    <h3>Click in this <a href="http://localhost:3000/reset/${token}">Link</a> to reset your password</h3>`
+                    <h3>Click in this <a href="${EMAIL}/reset/${token}">Link</a> to reset your password</h3>`
                 })
                 res.json({message:"Check Your email"})
             })
