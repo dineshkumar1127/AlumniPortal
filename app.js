@@ -1,10 +1,10 @@
-const express = require('express')()
-const app  = express
+const express = require('express')
+const app  = express()
 const PORT = process.env.PORT || 4500
 const  Mongoose = require('mongoose')
 const { MONGOURI } = require('./config/key')
 const bodyParser = require('body-parser')
-const Cors = require('cors')
+// const Cors = require('cors')
 
 
 
@@ -32,17 +32,17 @@ app.use(bodyParser.json())
 app.use(require('./Router/auth'))
 app.use(require('./Router/post'))
 app.use(require('./Router/user'))
-app.use(Cors())
+// app.use(Cors())
 
 
 if(process.env.NODE_ENV == "production"){
     app.use(express.static('client0/build'))
 
-    const path = require('path')
+    // const path = require('path')
 
-    app.get("*",(req,res)=>{
-        res.sendFile(path.resolve(__dirname,'client0','build','index.html'))
-    })
+    // app.get("*",(req,res)=>{
+    //     res.sendFile(path.resolve(__dirname,'client0','build','index.html'))
+    // })
 }
 
 app.listen(PORT,()=>{

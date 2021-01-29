@@ -4,7 +4,6 @@ const Mongoose = require('mongoose')
 const requirelogin = require('../middleware/requireLogin')
 const User = Mongoose.model("User")
 const Post = Mongoose.model("Post")
-Mongoose.set('useFindAndModify', false)
 
 
 router.get('/user/:id',requirelogin,(req,res)=>{
