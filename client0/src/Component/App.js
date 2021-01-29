@@ -29,7 +29,7 @@ const Routing=()=>{
         }
         else{
             if(!history.location.pathname.startsWith('/reset'))
-            history.push(('/signin'))
+            history.push('/signin')
         }
     },[])
 

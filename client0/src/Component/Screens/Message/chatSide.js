@@ -80,7 +80,7 @@ function ChatSide() {
             db.collection('chats')
             .doc(chatId)
             .collection('messages')
-            .orderBy('timestamp' )
+            .orderBy('timestamp', 'desc')
             .onSnapshot(snapshot=>
                 setMessages(snapshot.docs.map(doc=>({
                     id: doc.id,

@@ -93,7 +93,7 @@ function Slidebar() {
                     {/* ONE */}
             <div className="slidy-left">
                 <img style={{height:"10vh" , width:"10vh" ,borderRadius:"30px",marginTop: "5px"}} src={state ? state.pic : "loading!"}/>
-                <span className="card-title" style={{color:"black",fontWeight:"bold",marginRight:"20px",marginLeft:"0px",fontSize:"25px",marginTop: "5px"}}>{state ? state.username : "loading!"}</span>
+                <span className="card-title" style={{color:"black",fontWeight:"bold",marginRight:"100px",fontSize:"25px",marginTop: "5px"}}>{state ? state.username : "loading!"}</span>
             
 
 

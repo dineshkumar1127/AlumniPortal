@@ -154,7 +154,7 @@ const deletepost =(postId)=>{
                 <div className="col s12 m6">
                   <div className="card grey darken-1" >
                     <div className="card-content white-text" >
-                        <img key="0" style={{height:"100px",width:"100px",borderRadius:"100px"}} src={state ? state.pic : "loading!"}/>
+                        <img key="0" style={{marginLeft:"15px", height:"100px",width:"100px",borderRadius:"100px"}} src={state ? state.pic : "loading!"}/>
                              <span className="card-title" style={{fontWeight:"bold",color:"black"}}>{state ? state.username : "loading!"}<br/>({state ? state.scholar : "loading!"})</span>
                                 <p  style={{fontWeight:"bold",fontSize:"12px",color:"black"}}>{state ? state.about : "loading !.."}</p>
                     </div>
@@ -169,7 +169,7 @@ const deletepost =(postId)=>{
           <div className="home">
             <div className="card input-field " style={{backgroundColor:"ButtonFace",margin:"10px auto",maxWidth:"1000px",padding:"30px",textAlign:"center",height:"100%" ,width:"70%",marginTop:"10px"}}>
             <input  type="text"
-             placeholder="Start a Post"
+             placeholder="Share a Post"
              value={body}
              onChange={(e)=>setBody(e.target.value)}
              />
