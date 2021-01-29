@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Mongoose = require('mongoose')
-const requirelogin = require('../middleware/requirelogin')
+const requirelogin = require('../middleware/requireLogin')
 const Post = Mongoose.model("Post")
 
 router.post('/create',requirelogin,(req,res)=>{
@@ -19,7 +19,7 @@ router.post('/create',requirelogin,(req,res)=>{
         body,
         link,
         photo,
-        postedBy: req.user
+        postedBy:req.user
     })
 
     post.save().then(result=>{
@@ -68,25 +68,6 @@ router.delete('/removeposts/:postId',requirelogin,(req,res)=>{
     })
 })
 
-router.put('/comment',requirelogin,(req,res)=>{
-    const comment ={
-        text:req.body.text,
-        postedBy:req.user._id
-    }
-
-    Post.findByIdAndUpdate(req.body.postId,{
-        $push:{comments:comment}  
-    },{
-        new:true 
-    }).populate("comments.postedBy","_id name").populate("postedBy","_id name").exec((err,result)=>{
-        if(err){
-            return res.status(422).json({error:err})
-        }
-        else {
-            res.json(result)
-        }
-    })
-})
 
 
 module.exports = router

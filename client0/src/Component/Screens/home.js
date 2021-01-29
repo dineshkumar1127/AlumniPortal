@@ -1,7 +1,6 @@
 import React,{useState,useEffect,useContext ,useRef} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import M from 'materialize-css'
-import Modal from 'react-modal'
 import { UserContext } from '../App'
 
 
