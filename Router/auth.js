@@ -5,13 +5,11 @@ const User = Mongoose.model("User")
 const  bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const {JWT_SECRET } = require('../config/key')
-const requirelogin = require('../middleware/requirelogin')
 const { json } = require('body-parser')
 const nodemailer = require('nodemailer')
 const sendgridTransport  = require('nodemailer-sendgrid-transport')
 const crypto = require('crypto')
 
-// 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
 
 
 const transport = nodemailer.createTransport(
