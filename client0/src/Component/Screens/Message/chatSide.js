@@ -1,6 +1,6 @@
 
 import React,{useState , useContext , useEffect} from 'react'
-import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react'
+// import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react'
 import {UserContext} from '../../App'
 import {useParams} from 'react-router-dom'
 import Chat from './Chat'
@@ -80,7 +80,7 @@ function ChatSide() {
             db.collection('chats')
             .doc(chatId)
             .collection('messages')
-            .orderBy('timestamp', 'desc')
+            .orderBy('timestamp' )
             .onSnapshot(snapshot=>
                 setMessages(snapshot.docs.map(doc=>({
                     id: doc.id,
