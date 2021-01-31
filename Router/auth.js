@@ -114,14 +114,14 @@ router.post('/resetpassword',(req,res)=>{
         if(err){
             console.log(err)
         }
-        const token =  buffer.toString("hex")
-
+        // const token =  buffer.toString("hex")
+        const token = "123423181t4124r14102981274512914610264751123"
         User.findOne({email:req.body.email}).then(user=>{
             if(!user){
                 return res.status(422).json({error:"Invalid email"})
             }
             user.resetToken = token
-            user.expireToken = Date.now()+3600000
+            user.expireToken = Date.now() + 3600000
 
             user.save().then(result=>{
                 transport.sendMail({
@@ -132,7 +132,8 @@ router.post('/resetpassword',(req,res)=>{
                     <h1>Stay Connected Community </h1>
                     <h2>Password Reset</h2>
                     <p> you requested for password Reset !...</p>
-                    <h3>Click in this <a href="${EMAIL}/reset/${token}">Link</a> to reset your password</h3>`
+                    <h3>Click in this <a href="${EMAIL}/reset/${token}">Link</a> to reset your password</h3>
+                    `
                 })
                 res.json({message:"Check Your email"})
             })

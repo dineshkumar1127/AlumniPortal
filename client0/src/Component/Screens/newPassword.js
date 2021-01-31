@@ -66,9 +66,7 @@ const NewPassword = ()=>{
                     />
 
                     <p/>
-                    <button className="btn waves-effect waves-light #ef5350 red darken-1" type="submit" name="action" onClick= {()=>newpassword()}
-    
-                    >
+                    <button className="btn waves-effect waves-light #ef5350 red darken-1" type="submit" name="action" onClick= {()=>newpassword()} >
                     Update Password
                     </button>
 

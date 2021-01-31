@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 4500
 const  Mongoose = require('mongoose')
 const { MONGOURI } = require('./config/key')
 const bodyParser = require('body-parser')
-// const Cors = require('cors')
+const Cors = require('cors')
 
 
 
@@ -32,7 +32,7 @@ app.use(bodyParser.json())
 app.use(require('./Router/auth'))
 app.use(require('./Router/post'))
 app.use(require('./Router/user'))
-// app.use(Cors())
+app.use(Cors())
 
 
 if(process.env.NODE_ENV == "production"){

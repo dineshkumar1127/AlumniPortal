@@ -38,6 +38,8 @@ const PasswordReset = ()=>{
                 M.toast({html: data.message , classes: "rounded #3f51b5 indigo"})
                 history.push('/signin')
             }
+        }).catch(err=>{
+            console.log(err)
         })
     }
 
