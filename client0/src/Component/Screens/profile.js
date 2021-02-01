@@ -2,11 +2,13 @@ import React,{useState , useContext, useEffect , history , useRef} from 'react'
 import { UserContext } from '../App'
 import Modal from 'react-modal'
 import M from 'materialize-css'
+import { useHistory } from 'react-router-dom'
 
 
 const Profile = ()=>{
 
     const EditModal = useRef(null)
+    const PasswordModal = useRef(null)
     const {state , dispatch} = useContext(UserContext)
     const  [image, setImage] = useState("")
     const [pic , setPic] = useState([])
@@ -18,11 +20,21 @@ const Profile = ()=>{
     const [twitter , setTwitter] = useState("")
     const [about , setAbout] = useState("")
     const [data , setData] = useState("")
+
+    const [email , setEmail] = useState("")
+    const [oldpassword , setOldPassword] = useState("")
+    const [newpassword , setNewPassword] = useState("")
+    const [confirmnewpassword , setConfirmNewPassword] = useState("")
+    const history = useHistory()
     
 
 
     useEffect(()=>{
         M.Modal.init(EditModal.current)
+      },[])
+
+      useEffect(()=>{
+        M.Modal.init(PasswordModal.current)
       },[])
 
 
@@ -142,8 +154,6 @@ const Profile = ()=>{
 
     const updateprofile=()=>{
 
-      
-
        console.log(username) 
 
             fetch("/updateProfile",{
@@ -174,10 +184,43 @@ const Profile = ()=>{
             }).catch(err=>{
                 console.log(err)
             })
-        
-        
-    
 }
+
+
+
+
+const updatepassword=()=>{
+    
+    fetch("/newpassword",{
+        method:"put",
+        headers:{
+            "Content-type":"application/json",
+            "Authorization":"jozem "+localStorage.getItem("jwt")
+            
+        },
+
+        body:JSON.stringify({
+            oldpassword,
+            newpassword,
+            confirmnewpassword
+        })
+    }).then(res=>res.json()).then(result=>{
+
+
+        if(result.error){
+            M.toast({html:result.error, classes:"rounder #3F51b5 indigo"})
+        }
+
+        localStorage.setItem("user",JSON.stringify({...state,password:result.password}))
+        dispatch({type:"UPDATEPASSWORD",payload:result.password})
+        M.toast({html:"Password Successfully Updated", classes:"rounder #3F51b5 indigo"})
+        history.push('/signin')
+        
+    })
+}
+
+
+
 
 
     return (
@@ -188,12 +231,52 @@ const Profile = ()=>{
             <div className="card input-field " style={{backgroundColor:"ButtonFace",margin:"10px auto",maxWidth:"1000px",padding:"30px",textAlign:"center",height:"100%" ,width:"100%",marginTop:"10px"}}>
 
 
+
+                <a className="btn-floating btn-small waves-effect waves-light red right"><i data-target="modal-password" className="material-icons  modal-trigger">add</i></a>
+
+                <div id="modal-password" className="modal" style={{width:"500px"}} ref={PasswordModal}>
+
+                <div className="row" >
+                <p  style={{textAlign:"center",fontWeight:"bold" , fontSize:"30px"}}>Change Password</p>
+
+                <div className="input-field col s6" style={{marginBottom:"50px",width:"100%"}}>
+                <i className="material-icons prefix">account_circle</i>
+                <input id="icon_telephone" type="password" className="validate" placeholder="Old Password" value={oldpassword}  onChange={(e)=>setOldPassword(e.target.value)}/>
+                </div>
+
+                <div className="input-field col s6" style={{marginBottom:"50px",width:"100%"}}>
+                <i className="material-icons prefix">account_circle</i>
+                <input id="icon_telephone" type="password" className="validate" placeholder="New Password" value={newpassword} onChange={(e)=>setNewPassword(e.target.value)} />
+                </div>
+
+                <div className="input-field col s6" style={{marginBottom:"50px",width:"100%"}}>
+                <i className="material-icons prefix">account_circle</i>
+                <input id="icon_telephone" type="password" className="validate" placeholder="Confirm New Password" value={confirmnewpassword}  onChange={(e)=>setConfirmNewPassword(e.target.value)}/>
+                </div>
+
+                </div>
+
+                <div className="modal-footer">
+                <button className="btn waves-effect waves-light #ef5350 red darken-1 " style={{marginRight:"3px"}}onClick={()=>{ M.Modal.getInstance(PasswordModal.current).close()
+                }}>Close</button>
+                
+                <button className="btn waves-effect waves-light #ef5350 red darken-1 "style={{marginRight:"3px"}} onClick={()=>{{updatepassword()} M.Modal.getInstance(PasswordModal.current).close()}
+                }>Update</button>
+                </div>
+
+                </div>
+
+
+
+
+
                  <div>
                 <img className="be6sR left" style={{width:"200px",height:"200px",borderRadius:"100px",marginTop:"12px",marginLeft:"10px"}}
                 src={state ? state.pic : "loading"}
                 />
                 </div> 
 
+              
 <div >
                 <div className="file-field input-field" style={{margin:"10px"}}>
                 <div  style={{border:"none",borderRadius:"100px",height:"205px",width:"200px"}} >

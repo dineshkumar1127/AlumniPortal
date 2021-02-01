@@ -11,7 +11,8 @@ const Cors = require('cors')
 
 Mongoose.connect(MONGOURI,{
     useNewUrlParser:true,
-    useUnifiedTopology:true
+    useUnifiedTopology:true,
+    useFindAndModify: false
 })
 
 Mongoose.connection.on('connected',()=>{

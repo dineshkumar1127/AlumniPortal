@@ -30,6 +30,13 @@ export const reducer = (state,action)=>{
         }
         }
 
+        if(action.type === "UPDATEPASSWORD"){
+            return {
+                ...state,
+                password:action.payload
+            }
+        }
+
     
     return state
 }

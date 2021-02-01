@@ -12,7 +12,7 @@ import {reducer,initState} from '../reducers/userReducers'
 // import { Provider } from 'react-redux'
 // import store from '../Component/store'
 import Reset from '../Component/Screens/passwordReset'
-import NewPassword from '../Component/Screens/newPassword'
+
 
 
 export const UserContext = createContext()
@@ -44,7 +44,6 @@ const Routing=()=>{
         <Route  path="/message"><Message /></Route>
         <Route path="/profile/:userId">< UserProfile /></Route>
         <Route exact path="/reset"><Reset /></Route>
-        <Route path="/reset/:token"><NewPassword /></Route>
 
     </Switch>
  )
