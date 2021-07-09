@@ -8,7 +8,7 @@ const {JWT_SECRET } = require('../config/key')
 const nodemailer = require('nodemailer')
 const sendgridTransport  = require('nodemailer-sendgrid-transport')
 const crypto = require('crypto')
-const { SENDGRID_API , EMAIL} = require('../config/key')
+const { //your SendGrid Api Key Variable Name , EMAIL} = require('../config/key')
 const requireLogin = require('../middleware/requireLogin')
 
 
